@@ -13,16 +13,18 @@
   - JWT 기반 회원 관리 (카카오 로그인 포함)
   - CI/CD 구축 및 자동 배포
 
----
+<br>
 
 ## 🛠 기술 스택
 
 ### 🔹 Backend
-- Java 17, Spring Boot 3.1.3, JPA, Querydsl, MySQL 8.0.31
+- Java 17, Spring Boot 3.1.3
+- JPA, Querydsl, MySQL 8.0.31
 - Redis, Spark, Hadoop
 
 ### 🔹 Frontend
 - React 18.2.0, Next.js, TypeScript
+- MUI
 
 ### 🔹 DevOps
 - Docker, Jenkins, AWS EC2
@@ -43,12 +45,50 @@
 
 | 이름 | 역할 | 주요 기여 |
 |------|------|---------|
-| **정태희 (Team Leader)** | BE, Hadoop | API 개발, 데이터 파이프라인 구축 |
+| **정태희 (Team Leader)** | BE, FE, Hadoop | API 개발, 데이터 파이프라인 구축 |
 | **구민석** | FE, Hadoop | UI 개발, 데이터 시각화 |
 | **박대균** | BE, Hadoop | 뉴스 크롤링, 데이터 분석 |
 | **정예지** | BE | 데이터 모델링, API 문서화 |
 | **서수정** | FE, CI/CD | CI/CD 구축, 인프라 관리 |
 | **우찬희** | BE, CI/CD | API 개발, 서버 배포 |
+
+<br>
+
+## 📊 데이터 흐름
+
+1. **데이터 수집**
+   - 국토교통부 실거래가 API 크롤링 (1000만 건)
+   - 뉴스 크롤링 및 감정 분석
+   - CSV → Parquet 변환 후 HDFS 저장
+
+2. **Spark 분석 & 데이터 저장**
+   - Spark로 뉴스 & 시세 데이터 분석
+   - MySQL 및 Redis에 캐싱
+
+3. **게임 로직 적용**
+   - 뉴스 제공 → 사용자가 예측 후 매매
+   - 랭킹 시스템, 매매 기록 저장
+
+<br>
+
+## 🌐 배포 및 인프라
+- **CI/CD**: Jenkins + Docker 자동화
+- **배포 환경**: AWS EC2, Nginx Reverse Proxy
+- **Hadoop 구성**: HDFS, Spark
+
+<br>
+
+## 📜 커밋 컨벤션
+
+### 📌 1. 커밋 메시지 구조
+
+- `feat` : 새로운 기능 추가
+- `fix` : 버그 수정
+- `docs` : 문서 수정
+- `style` : 코드 포맷팅
+- `refactor` : 코드 리팩토링
+- `test` : 테스트 코드 추가
+- `chore` : 패키지 매니저 수정, 빌드 업무 수정
 
 <br>
 
